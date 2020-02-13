@@ -1,0 +1,10 @@
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+import os
+app=Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI']= os.getenv('DB_URL')
+SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  'SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and '
+db = SQLAlchemy(app)
+
+from application import routes

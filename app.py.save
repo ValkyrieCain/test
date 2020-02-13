@@ -1,0 +1,33 @@
+from flask import Flask,render_template
+app = Flask(__name__)
+@app.route('/home')
+def home():
+         return render_template('index.html',title='Home')
+
+@app.route('/title')
+def title():
+         return render_template('title.html')
+
+
+blogData = [​
+    {  ​
+        "name": {"first":"John", "last":"Doe"},​
+        "title":"First Post",​
+        "content":"This is some blog data for Flask lectures"​
+    }
+
+]blogData = [​
+    {  ​
+        "name": {"first":"John", "last":"Doe"},​
+        "title":"First Post",​
+        "content":"This is some blog data for Flask lectures"​
+    },​blogData = [​
+    {  ​
+        "name": {"first":"John", "last":"Doe"},​
+        "title":"First Post",​
+        "content":"This is some blog data for Flask lectures"​
+    },​
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
