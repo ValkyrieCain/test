@@ -3,6 +3,8 @@ from wtforms import StringField, SubmitField,PasswordField, BooleanField, Intege
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError,InputRequired
 from application.models import Users, Movies
 
+
+
 class PostRating(FlaskForm):
     title= StringField('Title:',
         validators = [

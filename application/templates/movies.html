@@ -3,15 +3,21 @@
 {% block body_content %}
     <h1>Movies Page!</h1>
     <p>Welcome to this web app!</p>
-<br>    
 
+
+<br>    
 <a href="{{ url_for('add') }}">Add Movie</a>
 </br>
 
+<table cellpadding="5px" border="1px solid black">
+<thead><tr><th>Title</th><th>Genre</th><th>Director</th><th>Rating</th></tr></thead>
+<tbody>
 {% if movies %}
-  {% for movie in movies %} 
-   {{ movie.title }}Genre:{{movie.genre}} Director:{{movie.director}} Rating:{{movie.rating}}
+  {% for movie in movies %}
+<tr><td>{{movie.title}}</td><td>{{movie.genre}}</td><td>{{movie.director}}</td><td>{{movie.rating}}</td></tr>
   {% endfor %}
+</tbody>
+</table>
 
 {% else  %}
   <p>There are no movies broo!</p>
