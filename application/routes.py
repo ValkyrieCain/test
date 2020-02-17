@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, request
 from flask_login import login_user, current_user, logout_user, login_required
 from application import app, db, bcrypt
 from application.models import Movies, Users
-from application.forms import PostRating, RegistrationForm, LoginForm
+from application.forms import addMovie, RegistrationForm, LoginForm, EmailChange, updateMovie
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -44,9 +44,9 @@ def movies():
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
-    form = PostRating()
+    form = addMovie()
     if form.validate_on_submit():
-        postRating = Movies(
+        addmovie = Movies(
             title = form.title.data,
             genre = form.genre.data,
             director = form.director.data,
@@ -58,7 +58,40 @@ def add():
         return redirect(url_for('movies'))
     else:
         print(form.errors)
-    return render_template('add.html', title='Add',posts=PostRating, form=form)
+    return render_template('add.html', title='Add',posts=addMovie, form=form)
+
+@app.route('/update', methods=['GET', 'POST'])
+def update():
+    form = updateMovie()
+
+    if form.validate_on_submit():
+        movie = Movies.query.filter_by(user_id=current_user.id,title=form.title.data).first()
+        movie.genre=form.genre.data
+        movie.director=form.director.data
+        movie.rating=form.rating.data
+
+
+        db.session.commit()
+        return redirect(url_for('movies'))
+    else:
+        print(form.errors)
+    return render_template('update.html', title='Update',posts=updateMovie, form=form)
+
+
+
+@app.route("/account", methods=['GET', 'POST'])
+def account():
+    form = EmailChange()
+    if form.validate_on_submit():
+        current_user.email = form.email.data
+        db.session.commit()
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.email.data = current_user.email
+    return render_template('account.html', title='Account', form=form)
+
+
+
 
 
 @app.route("/logout")

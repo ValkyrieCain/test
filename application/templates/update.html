@@ -1,14 +1,43 @@
+
+{% extends "layout.html"  %}
 <html>
-{% extends "layout.html" %}
+>
+<br>
+<div>
 {% block body_content %}
-    <h1>Movies Page!</h1>
-    <p>Welcome to this web app!</p>
-    {% for post in posts %}
-        <div>
-            <h3>{{ post.title }}</h3>
-		Genre:{{post.genre}} 	Director:{{post.director}} 	Rating:{{post.rating}}
-        </div>
-    {% endfor %}
-{% endblock body_content %}
-   
+<!-- container for the form -->
+     <form method='POST' action=''>
+         <!-- surround the displayed errors in a error div tag, this can then be styled later to be red etc. -->
+         <ul class="error">
+            <!-- for each error in the errors for the title input field -->
+	    <br>
+            {{ form.hidden_tag() }}
+            {{ form.title.label }}
+            {{ form.title }}
+            {% if form.title.errors %}
+               {% for error in form.title.errors %}
+                <!-- display the error -->
+                <span>{{ error }}</span>
+            <!-- end the for-loop -->
+               {% endfor %}
+          
+             <!-- end the if statement -->
+            {% endif %}   
+            </br>
+            {{ form.rating.label }}
+            {{ form.rating }}
+         
+            {{ form.genre.label }}
+            {{ form.genre }}
+         
+            {{ form.director.label }}
+            {{ form.director }}
+            {{ form.submit }}
+        </ul>
+     </form>
+    
+
+ {% endblock %}
+</div>
+</br>
 </html>

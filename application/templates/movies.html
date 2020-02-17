@@ -6,9 +6,10 @@
 
 
 <br>    
-<a href="{{ url_for('add') }}">Add Movie</a>
+<a href="{{ url_for('add') }}"><button>Add Movie</button></a>
+<a href="{{ url_for('update') }}"><button>Update Movie</button></a>
 </br>
-
+<br>
 <table cellpadding="5px" border="1px solid black">
 <thead><tr><th>Title</th><th>Genre</th><th>Director</th><th>Rating</th></tr></thead>
 <tbody>
@@ -24,5 +25,5 @@
 {% endif  %}
 
 {% endblock body_content %}
-   
+</br>   
 </html>
