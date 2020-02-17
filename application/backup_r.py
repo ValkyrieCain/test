@@ -34,31 +34,30 @@ def login():
 @app.route('/')
 @app.route('/home')
 def home():
-	return render_template('home.html', title='Home')
+	postData= Movies.query.all()
+	return render_template('home.html', title='Home',posts=postData)
 
 @login_required
 @app.route('/movies', methods=['GET', 'POST'])
 def movies():
-    movies = Movies.query.filter_by(user_id=current_user.id).all()
-    return render_template('movies.html', title='Movies', movies=movies)
-
-@app.route('/add', methods=['GET', 'POST'])
-def add():
     form = PostRating()
     if form.validate_on_submit():
         postRating = Movies(
             title = form.title.data,
             genre = form.genre.data,
             director = form.director.data,
-            rating = form.rating.data,
-            author=current_user
-)
+            rating = form.rating.data
+        )
+
         db.session.add(postRating)
         db.session.commit()
-        return redirect(url_for('movies'))
+
+        return redirect(url_for('home'))
+
     else:
         print(form.errors)
-    return render_template('add.html', title='Add',posts=PostRating, form=form)
+
+    return render_template('movies.html', title='Movies', form=form)
 
 
 @app.route("/logout")

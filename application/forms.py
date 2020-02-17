@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField,PasswordField, BooleanField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from application.models import Users
+from wtforms import StringField, SubmitField,PasswordField, BooleanField, IntegerField
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError,InputRequired
+from application.models import Users, Movies
 
 class PostRating(FlaskForm):
     title= StringField('Title:',
@@ -23,14 +23,19 @@ class PostRating(FlaskForm):
         ]
     )
     rating = StringField('Rating:',
-        validators = [
-            DataRequired(),
-            Length(min=2, max=30)
+        validators=[
+            InputRequired(message='A-D'),
+           Length(min=1,max=1)
         ]
     )
+
     submit = SubmitField('Post!')
 
+    def validate_title(self, title):
+        movie = Movies.query.filter_by(title=title.data).first()
 
+        if movie:
+           raise ValidationError('Duplicate Movie')
 
 class RegistrationForm(FlaskForm):
     email = StringField('Email',
