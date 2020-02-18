@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, request
 from flask_login import login_user, current_user, logout_user, login_required
 from application import app, db, bcrypt
 from application.models import Movies, Users
-from application.forms import PostRating, RegistrationForm, LoginForm
+from application.forms import addMovie, RegistrationForm, LoginForm, EmailChange, updateMovie
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -34,30 +34,74 @@ def login():
 @app.route('/')
 @app.route('/home')
 def home():
-	postData= Movies.query.all()
-	return render_template('home.html', title='Home',posts=postData)
+	return render_template('home.html', title='Home')
 
 @login_required
 @app.route('/movies', methods=['GET', 'POST'])
 def movies():
-    form = PostRating()
+    movies = Movies.query.filter_by(user_id=current_user.id).all()
+    return render_template('movies.html', title='Movies', movies=movies)
+
+@app.route('/add', methods=['GET', 'POST'])
+def add():
+    form = addMovie()
     if form.validate_on_submit():
-        postRating = Movies(
+        addmovie = Movies(
             title = form.title.data,
             genre = form.genre.data,
             director = form.director.data,
-            rating = form.rating.data
-        )
-
-        db.session.add(postRating)
+            rating = form.rating.data,
+            author=current_user
+)
+        db.session.add(addmovie)
         db.session.commit()
-
-        return redirect(url_for('home'))
-
+        return redirect(url_for('movies'))
     else:
         print(form.errors)
+    return render_template('add.html', title='Add',posts=addMovie, form=form)
 
-    return render_template('movies.html', title='Movies', form=form)
+@app.route('/update', methods=['GET', 'POST'])
+def update():
+    form = updateMovie()
+
+    if form.validate_on_submit():
+        movie = Movies.query.filter_by(user_id=current_user.id,title=form.title.data).first()
+        movie.genre=form.genre.data
+        movie.director=form.director.data
+        movie.rating=form.rating.data
+
+
+        db.session.commit()
+        return redirect(url_for('movies'))
+    else:
+        print(form.errors)
+    return render_template('update.html', title='Update',posts=updateMovie, form=form)
+
+
+
+@app.route("/account", methods=['GET', 'POST'])
+def account():
+    form = EmailChange()
+    if form.validate_on_submit():
+        current_user.email = form.email.data
+        db.session.commit()
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.email.data = current_user.email
+    return render_template('account.html', title='Account', form=form)
+
+@app.route("/account/delete", methods=["GET", "POST"])
+def account_delete():
+    movies = Movies.query.filter_by(user_id=current_user.id).all() 
+    for movie in movies:
+       db.session.delete(movie)
+    user_id = current_user.id
+    account = Users.query.filter_by(id=user_id).first()
+    logout_user()
+    db.session.delete(account)
+    db.session.commit()
+    return redirect(url_for('register'))
+
 
 
 @app.route("/logout")

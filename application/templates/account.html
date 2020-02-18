@@ -2,6 +2,9 @@
 {% extends "layout.html" %}
 {% block body_content %}
     <h1>Update E-mail</h1>
+<form action="{{ url_for('account_delete') }}">
+        <button type="submit">Delete your account</button>
+</form>
     <p>Need to change your  E-mail?</p>
     <div class='form'>
         <form method='POST' action=''>

@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, request
 from flask_login import login_user, current_user, logout_user, login_required
 from application import app, db, bcrypt
 from application.models import Movies, Users
-from application.forms import addMovie, RegistrationForm, LoginForm, EmailChange, updateMovie
+from application.forms import addMovie, RegistrationForm, LoginForm, EmailChange, updateMovie, delete_Movie
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -53,7 +53,7 @@ def add():
             rating = form.rating.data,
             author=current_user
 )
-        db.session.add(postRating)
+        db.session.add(addmovie)
         db.session.commit()
         return redirect(url_for('movies'))
     else:
@@ -79,6 +79,21 @@ def update():
 
 
 
+@app.route('/deleteMovie', methods=['GET', 'POST'])
+def deleteMovie():
+    form = delete_Movie()
+    if form.validate_on_submit():
+        print("yes")
+        title = Movies.query.filter_by(user_id=current_user.id,title=form.title.data).first()
+        db.session.delete(title)
+        db.session.commit()
+        return redirect(url_for('movies'))
+    else:
+        print("no")
+        print(form.errors)
+    return render_template('deleteMovie.html', title='Delete', form=form)
+
+
 @app.route("/account", methods=['GET', 'POST'])
 def account():
     form = EmailChange()
@@ -90,7 +105,17 @@ def account():
         form.email.data = current_user.email
     return render_template('account.html', title='Account', form=form)
 
-
+@app.route("/account/delete", methods=["GET", "POST"])
+def account_delete():
+    movies = Movies.query.filter_by(user_id=current_user.id).all() 
+    for movie in movies:
+       db.session.delete(movie)
+    user_id = current_user.id
+    account = Users.query.filter_by(id=user_id).first()
+    logout_user()
+    db.session.delete(account)
+    db.session.commit()
+    return redirect(url_for('register'))
 
 
 

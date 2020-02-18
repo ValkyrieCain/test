@@ -135,3 +135,21 @@ class updateMovie(FlaskForm):
 
         if not movie:
            raise ValidationError('Movie Does Not Exist')
+
+
+
+class delete_Movie(FlaskForm):
+    title= StringField('Title:',
+        validators = [
+            DataRequired(),
+            Length(min=2, max=30)
+        ]
+    )
+
+    submit = SubmitField('Delete!')
+
+    def validate_title(self, title):
+        movie = Movies.query.filter_by(title=title.data).first()
+
+        if not movie:
+           raise ValidationError('Movie Does Not Exist')
