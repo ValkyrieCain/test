@@ -1,5 +1,10 @@
 <body>
-<link ... href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+
+
+
+
+
+
 
 	<div class="navbar">
 	<a href="{{ url_for('home') }}"><button>Home</button></a>
@@ -13,4 +18,5 @@
 	<a href="{{ url_for('logout') }}"><button>Logout</button></a>	
 	{% endif %}
 	{% block body_content %} {% endblock %}
+        </div>
 </body>
