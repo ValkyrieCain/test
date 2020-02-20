@@ -1,39 +1,47 @@
+  GNU nano 2.7.4                                                                                         File: add.html                                                                                                   
+
 
 {% extends "layout.html"  %}
 <html>
-	
 <br>
 <div>
-
-
 {% block body_content %}
-<h1> Delete Movie Data</h1>
 
+
+
+<h1>Delete Movie</h1>
 <!-- container for the form -->
      <form method='POST' action=''>
          <!-- surround the displayed errors in a error div tag, this can then be styled later to be red etc. -->
-         <ul class="error" style="list-style-type:none;>
+         <ul class="error">
             <!-- for each error in the errors for the title input field -->
-	    <br>
-	    <li>  {{ form.hidden_tag() }} </li>
-	    <li> {{ form.title.label }}
-	   {{ form.title }}</li>
-	     {% if form.title.errors %}  </li>
-	          {% for error in form.title.errors %}
-                <!-- display the error -->
+
+             <dl>
+
+
+           {{ form.hidden_tag() }}
+           <dt> {{ form.title.label }}</dt>
+           <dt>  {{ form.title }}
+                 {% if form.title.errors %}
+                 {% for error in form.title.errors %}
+               <!-- display the error -->
                 <span>{{ error }}</span>
             <!-- end the for-loop -->
                {% endfor %}
-          
              <!-- end the if statement -->
-            {% endif %}   
-            </br>
-            </ul>
- {{ form.submit }}
+            {% endif %}
+
+            
+
+           </dl>
+         </ul>
+{{ form.submit }}
      </form>
-     
+
 
  {% endblock %}
 </div>
 </br>
 </html>
+
+
