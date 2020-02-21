@@ -1,43 +1,50 @@
 
 {% extends "layout.html"  %}
 <html>
->
 <br>
 <div>
-{% block body_content %}
+{% block page_content %}
+
+
+<div>
+<b>Please Update your Movie Here and Enter a rating from A-F (A being the highest, F being the Lowest)</b>
+</div>
+
 <!-- container for the form -->
      <form method='POST' action=''>
          <!-- surround the displayed errors in a error div tag, this can then be styled later to be red etc. -->
          <ul class="error">
             <!-- for each error in the errors for the title input field -->
-	    <br>
-            {{ form.hidden_tag() }}
-            {{ form.title.label }}
-            {{ form.title }}
-            {% if form.title.errors %}
-               {% for error in form.title.errors %}
-                <!-- display the error -->
-                <span>{{ error }}</span>
-            <!-- end the for-loop -->
-               {% endfor %}
-          
-             <!-- end the if statement -->
-            {% endif %}   
-            </br>
-            {{ form.rating.label }}
-            {{ form.rating }}
-         
-            {{ form.genre.label }}
-            {{ form.genre }}
-         
-            {{ form.director.label }}
-            {{ form.director }}
-            {{ form.submit }}
-        </ul>
-     </form>
+<div>	   
+<form>
+ {{ form.hidden_tag() }}
+<table class="table">
+    <tbody>
+       <tr class="danger">
+	
+        <td>{{ form.title.label }}</td>
+        <td>{{ form.title }} {% if form.title.errors %}{% for error in form.title.errors %}{{ error }} {% endfor  %} {% endif %}</td>
+        </tr> 
+         <tr> <td> {{ form.rating.label }}</td>
+            <td> {{ form.rating }}</td>
+            </tr>
+         <tr>    <td>{{ form.genre.label }}</td>
+            <td>{{ form.genre }}</td>
+           </tr> 
+           <tr>
+             <td>{{ form.director.label }}</td>
+             <td> {{ form.director }}</td>
+            </tr>     
+        <tr>
+        <td>  {{ form.submit }}</td>
+      </tr>
+     </tbody>
+  </table>
+</form>
+</div>          
     
 
- {% endblock %}
+{% endblock page_content %}
 </div>
 </br>
 </html>

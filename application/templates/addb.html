@@ -1,0 +1,49 @@
+
+{% extends "layout.html"  %}
+<html>
+<br>
+<div>
+{% block page_content %}
+
+
+
+<h1>Add Movie Data</h1>
+<!-- container for the form -->
+     <form method='POST' action=''>
+         <!-- surround the displayed errors in a error div tag, this can then be styled later to be red etc. -->
+         <ul class="error">
+            <!-- for each error in the errors for the title input field -->
+	   
+             <dl>
+
+
+           {{ form.hidden_tag() }}
+	   <dt> {{ form.title.label }}</dt>
+	   <dt>  {{ form.title }}
+                 {% if form.title.errors %} 
+                 {% for error in form.title.errors %} 
+               <!-- display the error -->
+                <span>{{ error }}</span>
+            <!-- end the for-loop -->
+               {% endfor %}
+             <!-- end the if statement -->
+            {% endif %}   
+       
+	    <dt> {{ form.rating.label }}</dt>
+	    <dt> {{ form.rating }}</dt>
+	    <dt>{{ form.genre.label }}</dt>
+	    <dt>{{ form.genre }}</dt>
+	    <dt>{{ form.director.label }}</dt>
+	    <dt> {{ form.director }}</dt>
+	    
+       
+	   </dl>    
+         </ul>
+{{ form.submit }}
+     </form>
+    
+
+{% endblock page_content %}
+</div>
+</br>
+</html>

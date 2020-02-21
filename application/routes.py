@@ -31,16 +31,19 @@ def login():
                 return redirect(url_for('home'))
     return render_template('login.html', title='Login', form=form)
 
+
 @app.route('/')
 @app.route('/home')
 def home():
 	return render_template('home.html', title='Home')
+
 
 @login_required
 @app.route('/movies', methods=['GET', 'POST'])
 def movies():
     movies = Movies.query.filter_by(user_id=current_user.id).all()
     return render_template('movies.html', title='Movies', movies=movies)
+
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
@@ -51,14 +54,15 @@ def add():
             genre = form.genre.data,
             director = form.director.data,
             rating = form.rating.data,
-            author=current_user
-)
+            author=current_user)
+
         db.session.add(addmovie)
         db.session.commit()
         return redirect(url_for('movies'))
     else:
         print(form.errors)
     return render_template('add.html', title='Add',posts=addMovie, form=form)
+
 
 @app.route('/update', methods=['GET', 'POST'])
 def update():
@@ -78,18 +82,15 @@ def update():
     return render_template('update.html', title='Update',posts=updateMovie, form=form)
 
 
-
 @app.route('/deleteMovie', methods=['GET', 'POST'])
 def deleteMovie():
     form = delete_Movie()
     if form.validate_on_submit():
-        print("yes")
         title = Movies.query.filter_by(user_id=current_user.id,title=form.title.data).first()
         db.session.delete(title)
         db.session.commit()
         return redirect(url_for('movies'))
     else:
-        print("no")
         print(form.errors)
     return render_template('deleteMovie.html', title='Delete', form=form)
 
@@ -105,6 +106,7 @@ def account():
         form.email.data = current_user.email
     return render_template('account.html', title='Account', form=form)
 
+
 @app.route("/account/delete", methods=["GET", "POST"])
 def account_delete():
     movies = Movies.query.filter_by(user_id=current_user.id).all() 
@@ -116,7 +118,6 @@ def account_delete():
     db.session.delete(account)
     db.session.commit()
     return redirect(url_for('register'))
-
 
 
 @app.route("/logout")
