@@ -3,7 +3,7 @@ from application import db, login_manager
 from flask_login import UserMixin
 from datetime import datetime
 
-
+#Test change for jenkins
 
 class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
