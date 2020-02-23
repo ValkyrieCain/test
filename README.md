@@ -48,13 +48,6 @@ Initial Plan:
 
 
 
-
-
-
-
-
-
-
 Delivered Solution: 
 
 
@@ -62,12 +55,16 @@ Delivered Solution:
 
 
 Strengths:
+
 •	Allows user to enter data to a database.
 •	Allows users to delete fata from a database.
 •	Allows users to Update and view data from database.
+
 Weaknesses:
+
 •	It is pretty basic but at my current skill level it is perfect and it works this does not really qualify as a weakness. But encourages me to continue to improve.
 •	Easy to get carried away with as I was extremely passionate about the creation of the app. You will be able to see this from the improvements I have in mind, listed below.
+
 Improvements:
 •	Pull Movie Posters 
 •	Allow the user to write a little review in a text box.
@@ -75,6 +72,8 @@ Improvements:
 •	Allow the user to send an aggregated list based on genre and personal rating via email.
 •	Allow users to get ratings from online movie databases like IMDB and/or Rotten Tomatoes.
 •	More complicated database so for example many genres for one movie as well as thinking of a way to included actor information and more.
+
+
 Summary:
 It was something new and challenging for myself to create a web app via Flask and Python as well as using Linux in this capacity. But to create something basic at first is always going to be the starting point for something greater. I could have and still wish to improve it and challenge myself further.
 
