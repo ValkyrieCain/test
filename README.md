@@ -21,7 +21,9 @@ Below you can see two screenshots of my Trello board, I wrote the functionality 
 
 Risk Assessment:
 
+(Please click on the image to see it clearly)
 <img src="https://i.imgur.com/fCdSd2t.png" />
+
 
 
 ER Diagrams can be seen below:
