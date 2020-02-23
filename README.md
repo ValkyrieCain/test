@@ -62,3 +62,8 @@ Summary:
 It was something new and challenging for myself to create a web app via Flask and Python as well as using Linux in this capacity. But to create something basic at first is always going to be the starting point for something greater. I could have and still wish to improve it and challenge myself further.
 
 
+
+The Final Product was then deployed to Jenkins and any changes made to my GitHub was automatically carried over to the build on Jenkins:
+<img src="https://i.imgur.com/lQXtVJK.png" />
+
+
