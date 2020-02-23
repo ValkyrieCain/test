@@ -64,6 +64,7 @@ It was something new and challenging for myself to create a web app via Flask an
 
 
 The Final Product was then deployed to Jenkins and any changes made to my GitHub was automatically carried over to the build on Jenkins:
+(Please click on the image to see it clearly)
 <img src="https://i.imgur.com/lQXtVJK.png" />
 
 
