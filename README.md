@@ -35,6 +35,9 @@ Initial Plan:
 Delivered Solution: 
 <img src="https://i.imgur.com/M8orczV.png" />
 
+Testing:
+As the testing script was ommitted due to complexities no automated testing was conducted. Throughout the development of the project and by making use of AGILE, the features were continuously testing manually either by myself or my colleagues.
+
 Strengths:
 
 •	Allows user to enter data to a database.
