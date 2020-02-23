@@ -2,7 +2,7 @@ To create a web based application whilst making use of supporting the tools, met
 Solution
 I decided to create a personal movie database application that would allow the user to keep track of the films that they had watched and rate them.
 
-<!-- Requirements -->
+Requirements
 
 The home page should just give a brief description of what the app is and be the default navigation page.
 
@@ -14,50 +14,29 @@ Project Log:
 
 To keep track of my progress I created a Trello board so I was aware of the functions that I had completed and still had to complete.
 
-Below you can see two screenshots of my Trello board, I wrote the functionality with the users’ needs in mind. I scored each functional aspect based on the difficulty level based on my current skill set.
+Below you can see two screenshots of my Trello board, I wrote the functionality with the user in mind, this was doing in the form of a user story. I scored each functional aspect based on the difficulty level based on my current skill set.
 
- 
+<img src="https://i.imgur.com/LSnW8ij.jpg" />
+<img src="https://i.imgur.com/yMoOT21.png" />
 
- 
+Risk Assessment:
 
-
-
-
-
+<img src="https://i.imgur.com/fCdSd2t.png" />
 
 
-
-
-
-
-
-
-
-
-
-ER Diagram:
-
+ER Diagrams can be seen below:
 
 Initial Plan:
-
-
-
-
-
-
-
+<img src="https://i.imgur.com/rIoSJV0.png" />
 
 
 Delivered Solution: 
-
-
-
-
+<img src="https://i.imgur.com/M8orczV.png" />
 
 Strengths:
 
 •	Allows user to enter data to a database.
-•	Allows users to delete fata from a database.
+•	Allows users to delete data from a database.
 •	Allows users to Update and view data from database.
 
 Weaknesses:
